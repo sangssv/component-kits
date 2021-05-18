@@ -58,7 +58,7 @@
     "jest-expo": "^38.0.2",
     "prettier": "^2.1.1",
     "react-test-renderer": "^16.13.1",
-    "semantic-release": "^17.1.2",
+    "semantic-release": "^17.4.3",
     "typescript": "^3.7.2"
   },
   "jest": {
@@ -132,5 +132,10 @@
         "message": "chore(release): ${nextRelease.version} [skip ci]nn${nextRelease.notes}"
       }
     ]
+  },
+  "version": "0.0.0-development",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/whoisryosuke/react-native-component-library-template.git"
   }
 }
