@@ -1,0 +1,22 @@
+{
+  "name": "component-kits-example",
+  "displayName": "ComponentKits Example",
+  "expo": {
+    "name": "component-kits-example",
+    "slug": "component-kits-example",
+    "description": "Example app for component-kits",
+    "privacy": "public",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
