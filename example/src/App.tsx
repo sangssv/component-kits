@@ -1,19 +1,32 @@
 import * as React from 'react';
+import { StyleSheet, View } from 'react-native';
+import { Block, Text, Voucher, News, DeliveryItem, Colors } from 'component-kits';
 
-import { StyleSheet, View, Text } from 'react-native';
-import ComponentKits from 'component-kits';
-
-export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
-  React.useEffect(() => {
-    ComponentKits.multiply(3, 7).then(setResult);
-  }, []);
-
+export default function  App() {
   return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
-    </View>
+    <Block flex={1} middle center>
+      <Text size={20} weight="bold" color={Colors.primary}>Cris Sang</Text>
+      <Voucher
+        imageSource={require('../assets/images/voucher-active.png')}
+        name="Giảm 5,000đ cho ly Cà Phê thứ 2 trong ngày"
+        quantity={1}
+        locked
+        expires={() => {
+          return <Text>{new Date().toDateString()}</Text>
+        }}
+      />
+      <News
+        imageSource={require('../assets/images/banner.png')}
+        name="Giảm 5,000đ cho ly Cà Phê thứ 2 trong ngày"
+      />
+      <DeliveryItem
+        imageSource={require('../assets/images/banner.png')}
+        name="Giảm 5,000đ cho ly Cà Phê thứ 2 trong ngày"
+        sellPrice={15000}
+        originalPrice={20000}
+        priceFormat={(price) => Number(price).toLocaleString()}
+      />
+    </Block>
   );
 }
 
