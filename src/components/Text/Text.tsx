@@ -3,7 +3,15 @@ import PropTypes, { InferProps } from 'prop-types';
 import { Text as RNText, StyleSheet } from 'react-native';
 import Colors from '../Colors/Colors';
 
-function Text({ children, style, color, weight, size, numberOfLines, ...props }: InferProps<typeof Text.propTypes>) {
+function Text({
+  children,
+  style,
+  color,
+  weight,
+  size,
+  numberOfLines,
+  ...props
+}: InferProps<typeof Text.propTypes>) {
   let textStyles = [styles.defaultStyle, style];
 
   if (color) textStyles.push({ color });

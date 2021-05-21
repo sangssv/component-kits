@@ -1,27 +1,33 @@
 import * as React from 'react';
-import PropTypes, { InferProps } from 'prop-types';
-import { View, StyleSheet, Image, Dimensions, TouchableWithoutFeedback } from 'react-native';
-import Colors from '../Colors/Colors';
+import PropTypes from 'prop-types';
+import {
+  View,
+  StyleSheet,
+  Image,
+  Dimensions,
+  TouchableWithoutFeedback,
+  ImageProps,
+} from 'react-native';
 import Text from '../Text/Text';
 
 const { width } = Dimensions.get('screen');
 
-function News({
-  imageSource,
-  name,
-  onPress,
-}: InferProps<typeof News.propTypes>) {
+export interface NewsProps {
+  imageSource: ImageProps['source'];
+  name: string;
+  onPress?: () => void;
+}
 
+function News({ imageSource, name, onPress }: NewsProps) {
   return (
     <TouchableWithoutFeedback onPress={() => onPress && onPress()}>
       <View style={styles.container}>
         <View style={styles.contentContainer}>
-          <Image
-            style={styles.image}
-            source={imageSource}
-          />
+          <Image style={styles.image} source={imageSource} />
           <View style={styles.content}>
-            <Text weight="medium" style={styles.title}>{name}</Text>
+            <Text weight="medium" style={styles.title}>
+              {name}
+            </Text>
           </View>
         </View>
       </View>
@@ -37,7 +43,7 @@ News.propTypes = {
 
 export default News;
 
-const NEWS_BANNER_WIDTH = (width - (3 * 15)) / 2;
+const NEWS_BANNER_WIDTH = (width - 3 * 15) / 2;
 
 const styles = StyleSheet.create({
   container: {

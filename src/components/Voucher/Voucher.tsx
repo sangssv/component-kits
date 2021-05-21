@@ -1,6 +1,12 @@
 import * as React from 'react';
 import PropTypes, { InferProps } from 'prop-types';
-import { View, StyleSheet, Image, Dimensions, TouchableWithoutFeedback } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Image,
+  Dimensions,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import Colors from '../Colors/Colors';
 import Text from '../Text/Text';
 
@@ -23,26 +29,34 @@ function Voucher({
 
     if (locked) {
       backgroundColor = '#636363';
-      content = <Text weight="medium" color="white" style={{ padding: 5 }}>{lockedText}</Text>;
+      content = (
+        <Text weight="medium" color="white" style={{ padding: 5 }}>
+          {lockedText}
+        </Text>
+      );
     } else if (!unlimited) {
       backgroundColor = Colors.primary;
-      content = <Text weight="medium" color="white" style={{ padding: 5 }}>{`${quantity}x`}</Text>;
+      content = (
+        <Text
+          weight="medium"
+          color="white"
+          style={{ padding: 5 }}
+        >{`${quantity}x`}</Text>
+      );
     } else {
-      content = <Image style={styles.unlimitedIcon} source={require('../../assets/icons/unlimited.png')} />;
+      content = (
+        <Image
+          style={styles.unlimitedIcon}
+          source={require('../../assets/icons/unlimited.png')}
+        />
+      );
     }
     return (
-      <View style={{
-        position: 'absolute',
-        bottom: -7,
-        right: 10,
-        zIndex: 999,
-        borderRadius: 5,
-        backgroundColor,
-      }}>
+      <View style={[styles.quantityContainer, { backgroundColor }]}>
         {content}
       </View>
-    )
-  }
+    );
+  };
 
   const renderExpires = (): React.ReactNode => {
     if (typeof expires === 'function') {
@@ -79,9 +93,7 @@ function Voucher({
             </View>
             <View style={styles.content}>
               {renderName()}
-              <View style={styles.expiresContainer}>
-                {renderExpires()}
-              </View>
+              <View style={styles.expiresContainer}>{renderExpires()}</View>
             </View>
           </View>
         </View>
@@ -108,7 +120,7 @@ Voucher.defaultProps = {
 
 export default Voucher;
 
-const VOUCHER_SIZE = (width - (3 * 15)) / 2;
+const VOUCHER_SIZE = (width - 3 * 15) / 2;
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -174,5 +186,12 @@ const styles = StyleSheet.create({
     width: 28,
     height: 28,
     resizeMode: 'contain',
+  },
+  quantityContainer: {
+    position: 'absolute',
+    bottom: -7,
+    right: 10,
+    zIndex: 999,
+    borderRadius: 5,
   },
 });

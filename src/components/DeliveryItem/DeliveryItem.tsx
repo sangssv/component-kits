@@ -1,10 +1,23 @@
 import * as React from 'react';
-import PropTypes, { InferProps } from 'prop-types';
-import { View, StyleSheet, Image, Dimensions, TouchableWithoutFeedback } from 'react-native';
+import PropTypes from 'prop-types';
+import {
+  View,
+  StyleSheet,
+  Image,
+  TouchableWithoutFeedback,
+  ImageProps,
+} from 'react-native';
 import Colors from '../Colors/Colors';
 import Text from '../Text/Text';
 
-const { width } = Dimensions.get('screen');
+export interface DeliveryItemProps {
+  imageSource: ImageProps['source'];
+  name: string;
+  originalPrice?: number;
+  sellPrice: number;
+  priceFormat: (price: number) => string;
+  onPress?: () => void;
+}
 
 function DeliveryItem({
   imageSource,
@@ -13,23 +26,28 @@ function DeliveryItem({
   sellPrice,
   priceFormat,
   onPress,
-}: InferProps<typeof DeliveryItem.propTypes>) {
+}: DeliveryItemProps) {
   return (
     <TouchableWithoutFeedback onPress={() => onPress && onPress()}>
       <View style={styles.container}>
-        <Image
-          style={styles.image}
-          source={imageSource}
-        />
-        <Text numberOfLines={3} weight="medium" style={styles.productName}>{name}</Text>
+        <Image style={styles.image} source={imageSource} />
+        <Text numberOfLines={3} weight="medium" style={styles.productName}>
+          {name}
+        </Text>
         <View style={{ marginTop: 15, width: '100%' }}>
-          {(originalPrice && originalPrice > sellPrice) ? (
+          {originalPrice && originalPrice > sellPrice ? (
             <>
-              <Text color={Colors.medium_gray} style={[styles.price, styles.promotionPrice]}>{priceFormat(originalPrice)}</Text>
-              <View height={5} />
+              <Text
+                color={Colors.medium_gray}
+                style={[styles.price, styles.promotionPrice]}
+              >
+                {priceFormat(originalPrice)}
+              </Text>
             </>
           ) : null}
-          <Text weight="medium" color={Colors.danger} style={[styles.price, styles.sellPrice]}>{priceFormat(sellPrice)}</Text>
+          <Text weight="medium" color={Colors.danger} style={styles.price}>
+            {priceFormat(sellPrice)}
+          </Text>
         </View>
       </View>
     </TouchableWithoutFeedback>
@@ -38,7 +56,7 @@ function DeliveryItem({
 
 DeliveryItem.propTypes = {
   imageSource: PropTypes.any.isRequired,
-  name: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  name: PropTypes.any,
   originalPrice: PropTypes.any,
   sellPrice: PropTypes.number.isRequired,
   priceFormat: PropTypes.func,

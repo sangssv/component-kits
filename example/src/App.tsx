@@ -1,18 +1,26 @@
 import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Block, Text, Voucher, News, DeliveryItem, Colors } from 'component-kits';
+import {
+  Block,
+  Text,
+  Voucher,
+  News,
+  DeliveryItem,
+  Colors,
+} from 'component-kits';
 
-export default function  App() {
+export default function App() {
   return (
     <Block flex={1} middle center>
-      <Text size={20} weight="bold" color={Colors.primary}>Cris Sang</Text>
+      <Text size={20} weight="bold" color={Colors.primary}>
+        Cris Sang
+      </Text>
       <Voucher
         imageSource={require('../assets/images/voucher-active.png')}
         name="Giảm 5,000đ cho ly Cà Phê thứ 2 trong ngày"
         quantity={1}
         locked
         expires={() => {
-          return <Text>{new Date().toDateString()}</Text>
+          return <Text>{new Date().toDateString()}</Text>;
         }}
       />
       <News
@@ -29,16 +37,3 @@ export default function  App() {
     </Block>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
-  },
-});
