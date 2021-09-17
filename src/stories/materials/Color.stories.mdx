@@ -1,0 +1,35 @@
+import {
+  Meta,
+  Story,
+  Canvas,
+  Source,
+  ColorPalette,
+  ColorItem,
+  Title
+} from '@storybook/addon-docs/blocks';
+import Colors from '../../theme/colors';
+
+<Meta title="MATERIALS/Colors" />
+
+# Colors
+
+## Usage
+
+```
+import {Colors} from '@7-eleven-platform/component-kits';
+
+const ColorDemo = () => (
+  <View>
+    <Text style={{color: Colors.primary}}>Text</Text>
+  </View>
+);
+```
+
+<ColorPalette>
+  {Object.keys(Colors).map(key => (
+    <ColorItem
+      title={key}
+      colors={[Colors[key]]}
+    />
+  ))}
+</ColorPalette>

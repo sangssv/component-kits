@@ -1,26 +1,24 @@
 import * as React from 'react';
-import PropTypes, { InferProps } from 'prop-types';
-import { Text as RNText, StyleSheet } from 'react-native';
-import Colors from '../Colors/Colors';
+import { Text as RNText, TextProps as RNTextProps, StyleSheet } from 'react-native';
+import Colors from '../../theme/colors';
 
-function Text({
-  children,
-  style,
-  color,
-  weight,
-  size,
-  numberOfLines,
-  ...props
-}: InferProps<typeof Text.propTypes>) {
-  let textStyles = [styles.defaultStyle, style];
+const defaultProps = {
+  weight: 'normal',
+  size: 14,
+  color: Colors.default,
+};
 
-  if (color) textStyles.push({ color });
+interface TextProps extends RNTextProps {
+  children: string | React.ReactNode;
+  style?: any;
+  color?: string;
+  weight?: 'light' | 'normal' | 'medium' | 'semi-bold' | 'bold' | 'extra-bold';
+  size?: number;
+}
 
-  if (size) textStyles.push({ fontSize: size });
-
+function Text({ children, style, color, weight, size, ...props }: TextProps) {
+  let fontWeight;
   if (weight) {
-    let fontWeight;
-
     switch (weight) {
       case 'light':
         fontWeight = '300';
@@ -44,12 +42,17 @@ function Text({
         fontWeight = '400';
         break;
     }
-
-    textStyles.push({ fontWeight });
   }
 
+  let textStyles = [
+    styles.defaultStyle,
+    color && { color },
+    size && { fontSize: size },
+    fontWeight && { fontWeight },
+  ];
+
   return (
-    <RNText {...props} numberOfLines={numberOfLines} style={textStyles}>
+    <RNText {...props} style={[textStyles, style]}>
       {children}
     </RNText>
   );
@@ -62,23 +65,6 @@ const styles = StyleSheet.create({
   },
 });
 
-Text.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.string,
-  ]).isRequired,
-  color: PropTypes.string,
-  weight: PropTypes.oneOf([
-    'light',
-    'normal',
-    'medium',
-    'semi-bold',
-    'bold',
-    'extra-bold',
-  ]),
-  size: PropTypes.number,
-  style: PropTypes.any,
-  numberOfLines: PropTypes.any,
-};
+Text.defaultProps = defaultProps;
 
 export default Text;

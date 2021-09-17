@@ -1,4 +1,4 @@
-const Colors = {
+export default {
   default: '#2C2C2C',
   primary: '#4DB856',
   secondary: 'rgba(0,0,0,.65)',
@@ -12,6 +12,5 @@ const Colors = {
   overlay: 'rgba(0, 0, 0, 0.5)',
   dark_green: '#008458',
   orange: '#EF9837',
+  disabled: '#6C757D',
 };
-
-export default Colors;

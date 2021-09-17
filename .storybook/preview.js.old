@@ -1,0 +1,11 @@
+export const parameters = {
+  options: {
+    storySort: {
+      order: [
+        'OVERVIEW',
+        'MATERIALS', ['Colors', 'Spacing', 'Radius'],
+        'COMPONENTS',
+      ],
+    },
+  },
+};

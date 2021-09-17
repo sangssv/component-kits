@@ -1,0 +1,35 @@
+import {
+  Meta,
+  Story,
+  Canvas,
+  Source,
+  ColorPalette,
+  ColorItem,
+  Info
+} from '@storybook/addon-docs/blocks';
+import Spacing from '../../theme/spacing';
+
+<Meta title="MATERIALS/Spacing" />
+
+# Spacing
+
+## Usage
+
+```
+import { Spacing } from @7-eleven-platform/component-kits';
+
+const SpacingDemo = () => <View style={{ padding: Spacing.M }} />;
+```
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Size</th>
+  </tr>
+  {Object.keys(Spacing).map(key => (
+    <tr>
+      <td>{key}</td>
+      <td>{Spacing[key]}</td>
+    </tr>
+  ))}
+</table>

@@ -1,0 +1,35 @@
+import {
+  Meta,
+  Story,
+  Canvas,
+  Source,
+  ColorPalette,
+  ColorItem,
+  Info
+} from '@storybook/addon-docs/blocks';
+import Radius from '../../theme/radius';
+
+<Meta title="MATERIALS/Radius" />
+
+# Radius
+
+## Usage
+
+```
+import { Radius } from '@7-eleven-platform/component-kits';
+
+const DariusDemo = () => <View style={{ borderRadius: Radius.M }} />;
+```
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Size</th>
+  </tr>
+  {Object.keys(Radius).map(key => (
+    <tr>
+      <td>{key}</td>
+      <td>{Radius[key]}</td>
+    </tr>
+  ))}
+</table>

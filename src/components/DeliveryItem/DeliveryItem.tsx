@@ -7,10 +7,11 @@ import {
   TouchableWithoutFeedback,
   ImageProps,
 } from 'react-native';
-import Colors from '../Colors/Colors';
+import Colors from '../../theme/colors';
 import Text from '../Text/Text';
 
 export interface DeliveryItemProps {
+  containerStyle?: any;
   imageSource: ImageProps['source'];
   name: string;
   originalPrice?: number;
@@ -20,6 +21,7 @@ export interface DeliveryItemProps {
 }
 
 function DeliveryItem({
+  containerStyle,
   imageSource,
   name,
   originalPrice,
@@ -29,21 +31,19 @@ function DeliveryItem({
 }: DeliveryItemProps) {
   return (
     <TouchableWithoutFeedback onPress={() => onPress && onPress()}>
-      <View style={styles.container}>
+      <View style={[styles.container, containerStyle]}>
         <Image style={styles.image} source={imageSource} />
         <Text numberOfLines={3} weight="medium" style={styles.productName}>
           {name}
         </Text>
         <View style={{ marginTop: 15, width: '100%' }}>
           {originalPrice && originalPrice > sellPrice ? (
-            <>
-              <Text
-                color={Colors.medium_gray}
-                style={[styles.price, styles.promotionPrice]}
-              >
-                {priceFormat(originalPrice)}
-              </Text>
-            </>
+            <Text
+              color={Colors.medium_gray}
+              style={[styles.price, styles.promotionPrice]}
+            >
+              {priceFormat(originalPrice)}
+            </Text>
           ) : null}
           <Text weight="medium" color={Colors.danger} style={styles.price}>
             {priceFormat(sellPrice)}
@@ -68,7 +68,6 @@ export default DeliveryItem;
 const styles = StyleSheet.create({
   container: {
     width: 120,
-    paddingHorizontal: 10,
     alignItems: 'center',
   },
   image: {
